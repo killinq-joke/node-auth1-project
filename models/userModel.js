@@ -2,6 +2,8 @@ const db = require("../data/db-configs")
 
 module.exports = {
     getAll,
+    getById,
+    getBy,
     add
 }
 
@@ -11,6 +13,10 @@ function getAll() {
 
 function getById(id) {
     return db("users").where({id})
+}
+
+function getBy(filter) {
+    return db("users").where(filter)
 }
 
 async function add(user) {
