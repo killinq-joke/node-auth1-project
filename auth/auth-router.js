@@ -21,6 +21,8 @@ router.post("/api/login", (req, res) => {
   md.findBy({ username })
     .then((user) => {
       if (user && bc.compareSync(password, user[0].password)) {
+        req.session.cookie.ID = user[0].id;
+        console.log(req.session.cookie)
         res.status(200).json({ message: "Logged in" });
       } else {
         res.status(401).json({ message: "You shall not pass!" });

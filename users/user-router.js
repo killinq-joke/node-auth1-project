@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const md = require("./user-model");
 
-router.get("/api/users", (req, res) => {
+router.get("/", (req, res) => {
   md.findAll()
     .then((response) => {
       res.status(200).json(response);
