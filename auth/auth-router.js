@@ -16,6 +16,19 @@ router.post("/api/register", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {});
+router.post("/api/login", (req, res) => {
+    const {username, password} = req.body
+    md.findBy({username})
+    .then(user => {
+        if (user && bc.compareSync(password, user[0].password)) {
+          res.status(200).json({ welcome: "here" });
+        } else {
+          res.status(401).json({ you: "shall not pass" });
+        }
+    })
+    .catch(err => {
+        res.status(500).json({errorMessage: err.message})
+    })
+});
 
 module.exports = router;
