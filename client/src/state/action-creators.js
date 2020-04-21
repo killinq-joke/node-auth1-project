@@ -19,7 +19,13 @@ export const onLogin = (values, history) => (dispatch) => {
     });
 };
 
-export const fetch = (url) => (dispatch) => {
+export const fetch = (url, setter) => (dispatch) => {
   dispatch({ type: types.FETCH });
-  axios.get(url);
+  axios.get(url)
+  .then(res => {
+    setter(res);
+  })
+  .catch(err => {
+    console.log(err)
+  })
 };
