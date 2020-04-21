@@ -1,22 +1,25 @@
-import React, {useState} from 'react';
-import './App.css';
+import React from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionCreators from "./state/action-creators";
 
-function App() {
-  const [formValues, setFormValues] = useState({})
+import LoginForm from "./components/login-form";
+
+import "./App.css";
+
+const App = ({ formValues, inputChange, onLogin }) => {
   return (
     <div className="App">
-      <form>
-        <label>
-          username
-          <input value={formValues.username} />
-        </label>
-        <label>
-          password
-          <input type="password" value={formValues.password} />
-        </label>
-      </form>
+      <Route exact path="/">
+        <LoginForm />
+      </Route>
+      <Route path="logged"></Route>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { formValues: state.formValues };
+}
+
+export default connect(mapStateToProps, actionCreators)(App);

@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 import thunk from "redux-thunk";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import * as e from "./state/reducers";
-import * as serviceWorker from './serviceWorker';
+import { formReducer } from "./state/reducers";
+import { BrowserRouter as Router } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
 
 const combinedReducer = combineReducers({
-  
+  formValues: formReducer,
 });
 
 const store = createStore(
@@ -22,9 +23,11 @@ const store = createStore(
 );
 
 ReactDOM.render(
+  <Router>
     <Provider store={store}>
       <App />
-    </Provider>,
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );
 

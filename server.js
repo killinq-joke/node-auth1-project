@@ -6,7 +6,7 @@ const session = require("express-session");
 const userRouter = require("./users/user-router");
 const authRouter = require("./auth/auth-router");
 
-const midware = require("./middleware")
+const midware = require("./middleware");
 
 const server = express();
 
@@ -25,8 +25,12 @@ const sessionConfig = {
 server.use(express.json());
 server.use(cors());
 server.use(helmet());
-server.use(session(sessionConfig))
+server.use(session(sessionConfig));
 server.use("/api/users", midware.authenticate, userRouter);
 server.use(authRouter);
+
+server.get("/", (req, res) => {
+  res.status(200).json({api: "is up"})
+})
 
 module.exports = server;
