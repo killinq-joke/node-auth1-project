@@ -9,11 +9,17 @@ export const inputChange = (e) => (dispatch) => {
 
 export const onLogin = (values, history) => (dispatch) => {
   dispatch({ type: types.LOGIN });
-  axios.post("http://localhost:7000/api/login", values)
-  .then(res => {
-    history.push("/logged")
-  })
-  .catch(err => {
-      console.log(err)
-  })
+  axios
+    .post("http://localhost:7000/api/login", values)
+    .then((res) => {
+      history.push("/logged");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const fetch = (url) => (dispatch) => {
+  dispatch({ type: types.FETCH });
+  axios.get(url);
 };

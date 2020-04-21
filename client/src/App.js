@@ -7,7 +7,7 @@ import LoginForm from "./components/login-form";
 
 import "./App.css";
 
-const App = ({ formValues, inputChange, onLogin }) => {
+const App = () => {
   return (
     <div className="App">
       <Route exact path="/">
